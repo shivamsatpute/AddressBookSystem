@@ -6,6 +6,7 @@ namespace AddressBook
 {
     class EditContact
     {
+
         PersonDetails person = null;
 
         List<PersonDetails> list = new List<PersonDetails>(); //create a list of Person objects
@@ -13,13 +14,13 @@ namespace AddressBook
         String fname = null; //empty string
         String lname, address, city, state, phone, zip, email; //Declaring (Creating) Variables
 
-        public void AddRecord() //Adding Record method
+        public void AddRecord() //Addidng Record method
         {
             int i = 0;
-            while (i == 0) // Checking name exists or not
+            while (i == 0) // Checking name exixt or not
             {
                 Console.Write("Enter First Name:- "); //take input user First name
-                this.fname = Console.ReadLine();   //Store input fname
+                this.fname = Console.ReadLine();   //Store input fname            
                 if (CheckExist(fname))  //Checking for duplicates firstname or user input are same or not
                 {
                     Console.WriteLine($"Record with name { fname } Already Exist\n Please Enter New name:-");//print name Already Exist
@@ -28,7 +29,6 @@ namespace AddressBook
                 {
                     i = 1;
                 }
-
             }
             Console.Write("Enter Last Name:- "); //Take input user
             lname = Console.ReadLine();            //Store input for lname
@@ -131,9 +131,26 @@ namespace AddressBook
                             Console.WriteLine(t);//print list
                         }
                     }
+                } //end of edit() method
+            }
+        }
+        public void DeleteRecord(string firstName)  //Delte Record Method
+        {
+            for (int i = 0; i < list.Count; i++)   //Cheack record present or not
+            {
+                if (list[i].FirstName.Equals(firstName))  //Cheack list of record and user inpute same or not
+                {
+                    list.Remove(this.person); //Remove Record from Person class
+                    Console.WriteLine($"{firstName} Name of Record Delete Successfully"); //Print Record Delete
+                }
+                else
+                {
+                    Console.WriteLine($"{firstName} Name of Record Not Found "); //Print Record not found
                 }
             }
         }
 
     }
+
 }
+
