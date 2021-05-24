@@ -102,8 +102,6 @@ namespace AddressBook
                         }
                         break;
                     case 3:
-                        Console.Write("Enter City Name To Search Records:- ");
-                        String city = Console.ReadLine();
                         edit.SearchRecordCityOrState();
                         break;
 
