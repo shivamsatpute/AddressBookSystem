@@ -207,5 +207,58 @@ namespace AddressBook
             }
             return false;
         }
+        public void SearchRecordCityOrState()  
+        {
+           
+            Console.WriteLine("1.City\n2.State\nEnter Choice:-");
+
+            int choice2 = Convert.ToInt32(Console.ReadLine());
+            if (choice2 == 1)
+            {
+                int count = 0;
+                Console.WriteLine("Searching contact by City");
+                Console.WriteLine("Enter City Name:-");
+                string city = Console.ReadLine();
+
+                for (int i = 0; i < list.Count; i++)  
+                {
+                    if (list[i].City.Equals(city))  
+                    {
+                        count++;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{city} City Name of Record Not Found "); 
+                    }
+
+                }
+
+
+            }
+            else
+            {
+                int count = 0;
+                Console.WriteLine("Search Record by State");
+                Console.WriteLine("Enter State Name:-");
+                string state = Console.ReadLine();
+
+                for (int i = 0; i < list.Count; i++)   
+                {
+                    if (list[i].State.Equals(state))  
+                    {
+                        count++;
+                        Console.WriteLine($"Name:- { list[i].FirstName} State:- { list[i].State} "); 
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{state} State Name of Record Not Found "); 
+                    }
+                }
+
+                Console.WriteLine($"\nNumber of contact in the City:- {state} are {count}");
+            }
+        }
+
     }
 }
