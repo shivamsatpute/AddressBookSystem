@@ -12,14 +12,14 @@ namespace AddressBook
 
         public static bool PhoneNumberValidation(String phone)
         {
-            String PPattern = @"^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}"; //Define Phone Number Pattern
-            Regex Pregex = new Regex(PPattern); //create object of the Regex class (its Regesx predefine class)
+            String PPattern = @"^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}"; 
+            Regex Pregex = new Regex(PPattern); 
             return Pregex.IsMatch(phone);
         }
         public static bool EmailValidation(String email)
         {
-            String Epattern = @"^[a-z]+([-+*.]?[0-9a-z])*@[a-z0-9]+\.(\.?[a-z]{2,}){1,2}$"; //Define Email Pattern
-            Regex eregex = new Regex(Epattern); //create object of the Regex class (its Regesx predefine class)
+            String Epattern = @"^[a-z]+([-+*.]?[0-9a-z])*@[a-z0-9]+\.(\.?[a-z]{2,}){1,2}$"; 
+            Regex eregex = new Regex(Epattern); 
             return eregex.IsMatch(email);
 
         }
@@ -27,49 +27,48 @@ namespace AddressBook
 
         PersonDetails person = null;
 
-        List<PersonDetails> list = new List<PersonDetails>(); //create a list of Person objects
+        List<PersonDetails> list = new List<PersonDetails>(); 
 
-        String fname = null; //empty string
-        String lname, address, city, state, phone, zip, email; //Declaring (Creating) Variables
-
-        public void AddRecord() //Addidng Record method
+        String fname = null; 
+        String lname, address, city, state, phone, zip, email;
+        public void AddRecord()
         {
             int i = 0;
-            while (i == 0) // Checking name exixt or not
+            while (i == 0) 
             {
-                Console.Write("Enter First Name:- "); //take input user First name
-                this.fname = Console.ReadLine();   //Store input fname            
-                if (CheckExist(fname))  //Checking for duplicates firstname or user input are same or not
+                Console.Write("Enter First Name:- "); 
+                this.fname = Console.ReadLine();        
+                if (CheckExist(fname)) 
                 {
-                    Console.WriteLine($"Record with name { fname } Already Exist\n Please Enter New name:-");//print name Already Exist
+                    Console.WriteLine($"Record with name { fname } Already Exist\n Please Enter New name:-");
                 }
                 else
                 {
                     i = 1;
                 }
             }
-            Console.Write("Enter Last Name:- "); //Take input user
-            lname = Console.ReadLine();            //Store input for lname
-            Console.Write("Enter Address:- "); //Take input user
-            address = Console.ReadLine();       //Store input for address
-            Console.Write("Enter City:- "); //Take input user
-            city = Console.ReadLine();        //Store input for city
-            Console.Write("Enter State:- "); //Take input user
-            state = Console.ReadLine();        //Store input for state
-            Console.Write("Enter Zip:- "); //Take input user
-            zip = Console.ReadLine();         //Store input for zip
+            Console.Write("Enter Last Name:- "); 
+            lname = Console.ReadLine();            
+            Console.Write("Enter Address:- "); 
+            address = Console.ReadLine();       
+            Console.Write("Enter City:- "); 
+            city = Console.ReadLine();        
+            Console.Write("Enter State:- "); 
+            state = Console.ReadLine();        
+            Console.Write("Enter Zip:- ");
+            zip = Console.ReadLine();        
 
 
-            Console.Write("Enter Phone Number:- "); //Take input user
-            phone = Console.ReadLine();           //Store input for phone
+            Console.Write("Enter Phone Number:- "); 
+            phone = Console.ReadLine();           
             while (!PhoneNumberValidation(phone))
             {
                 Console.Write(phone + " is Invalid Phone Number \nPlease Enter Valid Number:- ");
                 phone = Console.ReadLine();
             }
 
-            Console.Write("Enter Email:- ");  //Take input user
-            email = Console.ReadLine();           //Store input for email
+            Console.Write("Enter Email:- ");  
+            email = Console.ReadLine();          
 
             while (!EmailValidation(email))
             {
@@ -78,13 +77,13 @@ namespace AddressBook
             }
 
             person = new PersonDetails(fname, lname, address, city, state, phone, zip, email);
-            list.Add(person);   //adding list data person
+            list.Add(person);   
         }
-        public void DisplayRecord()  //Display Record Method
+        public void DisplayRecord()  
         {
-            if (list.Count == 0) //Check list ==0
+            if (list.Count == 0) 
             {
-                Console.WriteLine(" No Records Found"); //print record not found
+                Console.WriteLine(" No Records Found"); 
             }
             else
             {
@@ -94,16 +93,16 @@ namespace AddressBook
                 }
             }
         }
-        public void EditRecord(String fname) // EditRecord Method 
+        public void EditRecord(String fname)  
         {
-            for (int k = 0; k < list.Count; k++) //Value  present or not
+            for (int k = 0; k < list.Count; k++) 
             {
                 if (list[k].FirstName.Equals(fname))
                 {
                     PersonDetails person = list[k];
-                    Console.WriteLine(person);  //Print person
+                    Console.WriteLine(person);  
 
-                    while (k == 0)  // k==0 to edite contact
+                    while (k == 0) 
                     {
                         Console.WriteLine("What Do You Want to edit Contact Details \n"
                                 + "1. Address\n"
@@ -114,48 +113,48 @@ namespace AddressBook
                                 + "6. Email\n"
                                 + "7. Save And Exit\n");
 
-                        int choice = Convert.ToInt32(Console.ReadLine());  //convert string and store choice
-                        switch (choice)  //case 
+                        int choice = Convert.ToInt32(Console.ReadLine()); 
+                        switch (choice)  
                         {
                             case 1:
-                                Console.Write("Enter new Address:-  ");  //Take input user
-                                String address = Console.ReadLine();   //store address veriable
-                                person.Address = address;  //store class of person address data
+                                Console.Write("Enter new Address:-  "); 
+                                String address = Console.ReadLine();  
+                                person.Address = address;  
                                 break;
                             case 2:
-                                Console.Write("Enter new City:- "); //Take input user
-                                String city = Console.ReadLine();  //store city veriable
-                                person.City = city;                 //store class of person city data
+                                Console.Write("Enter new City:- "); 
+                                String city = Console.ReadLine(); 
+                                person.City = city;
                                 break;
                             case 3:
-                                Console.Write("Enter new State:- "); //Take input user
-                                String state = Console.ReadLine();   //store state veriable
-                                person.State = state;               //store class of person state data
+                                Console.Write("Enter new State:- "); 
+                                String state = Console.ReadLine();  
+                                person.State = state;              
                                 break;
                             case 5:
-                                Console.Write("Enter new Phone:- "); //Take input user
-                                String phone = Console.ReadLine();   //store phone veriable
+                                Console.Write("Enter new Phone:- "); 
+                                String phone = Console.ReadLine();   
                                 while (!PhoneNumberValidation(phone))
                                 {
                                     Console.Write(phone + " is Invalid Phone Number \nPlease Enter Valid Number:- ");
                                     phone = Console.ReadLine();
                                 }
-                                person.PhoneNo = phone;                 //store class of person phone data
+                                person.PhoneNo = phone;                 
                                 break;
                             case 4:
-                                Console.Write("Enter new Zip Code:- "); //Take input user
-                                String zip = Console.ReadLine();        //store zip veriable
-                                person.ZipCode = zip;                       //store class of person zip data
+                                Console.Write("Enter new Zip Code:- "); 
+                                String zip = Console.ReadLine();        
+                                person.ZipCode = zip;                       
                                 break;
                             case 6:
-                                Console.Write("Enter new Email:- "); //Take input user
+                                Console.Write("Enter new Email:- "); 
                                 String email = Console.ReadLine();
                                 while (!EmailValidation(email))
                                 {
                                     Console.Write(email + " is Invalid Email \nPlease Enter Valid Email:- ");
                                     email = Console.ReadLine();
                                 }//store email veriable
-                                person.Email = email;                       //store class of person Email data
+                                person.Email = email;                      
                                 break;
                             case 7:
                                 k = 1;
@@ -164,40 +163,40 @@ namespace AddressBook
                                 Console.WriteLine("Please Enter Valid Option");
                                 break;
                         }
-                        foreach (PersonDetails t in list) //automate the reading  t of person of class
+                        foreach (PersonDetails t in list) 
                         {
-                            Console.WriteLine(t);//print list
+                            Console.WriteLine(t);
                         }
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"{fname} Name of Record Not Found "); //Print Record not found
+                    Console.WriteLine($"{fname} Name of Record Not Found "); 
                 }
             }
         }
-        public void DeleteRecord(string firstName)  //Delte Record Method
+        public void DeleteRecord(string firstName) 
         {
-            for (int i = 0; i < list.Count; i++)   //Cheack record present or not
+            for (int i = 0; i < list.Count; i++)   
             {
-                if (list[i].FirstName.Equals(firstName))  //Cheack list of record and user inpute same or not
+                if (list[i].FirstName.Equals(firstName))  
                 {
-                    list.Remove(this.person); //Remove Record from Person class
-                    Console.WriteLine($"{firstName} Name of Record Delete Successfully"); //Print Record Delete
+                    list.Remove(this.person); 
+                    Console.WriteLine($"{firstName} Name of Record Delete Successfully"); 
                 }
                 else
                 {
-                    Console.WriteLine($"{firstName} Name of Record Not Found "); //Print Record not found
+                    Console.WriteLine($"{firstName} Name of Record Not Found "); 
                 }
             }
         }
-        public bool CheckExist(string fname)  //Check exist method
+        public bool CheckExist(string fname) 
         {
             int flag = 0;
-            foreach (PersonDetails person in list) //Check list of class person
+            foreach (PersonDetails person in list) 
             {
-                if (person.FirstName.Equals(fname)) //check first name and user input are equal or not
-                {
+                if (person.FirstName.Equals(fname))
+                { 
                     flag = 1;
                     break;
                 }

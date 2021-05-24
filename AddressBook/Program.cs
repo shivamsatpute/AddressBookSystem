@@ -5,47 +5,48 @@ namespace AddressBook
 {
     class Program
     {
-        static System.Collections.Generic.Dictionary<String, Program> addressBookDictionary = new Dictionary<string, Program >(); //create Dictionary
-        static void Main(string[] args) //Main method
+        EditContact edit = new EditContact();
+        static Dictionary<String, Program> addressBookDictionary = new Dictionary<string, Program>(); 
+        static void Main(string[] args) 
         {
-            bool loop1 = true; //Boolean Value TRue Or False
-
-            while (loop1)  //While loop to adding number of Address book system
+            bool loop1 = true; 
+            EditContact edit = new EditContact();
+            while (loop1)  
             {
                 Console.WriteLine("**** Welcome To Address Book System ****");
-                Console.WriteLine("\n1.Add Address Book System\n2.Show Address Books System Names\n3.Exit "); //Print menu
+                Console.WriteLine("\n1.Add Address Book System\n2.Show Address Books System Names\n3.Search Person in City or State\n4.Exit "); //Print menu
 
-                Console.Write("Enter Your Choice:- "); //Take input
-                int choice1 = Convert.ToInt32(Console.ReadLine()); //take input user and store choice1 veriable
+                Console.Write("Enter Your Choice:- "); 
+                int choice1 = Convert.ToInt32(Console.ReadLine()); 
 
-                while (choice1 > 3)//Check input is greater or not
+                while (choice1 > 4)
                 {
-                    Console.WriteLine("Plz Enter Valid Option"); //print 
-                    Console.Write("Enter Your Choice:-");  //take input
-                    choice1 = Convert.ToInt32(Console.ReadLine()); //store choice1
+                    Console.WriteLine("Plz Enter Valid Option");  
+                    Console.Write("Enter Your Choice:-");  
+                    choice1 = Convert.ToInt32(Console.ReadLine()); 
                 }
 
-
-                Program addressBook = new Program(); //Create Object AddressBookPrg
-                string addressBookName = null; // addressBookName empty or null
-                switch (choice1)  //switch Case
+                //UC7
+                Program addressBook = new Program(); 
+                string addressBookName = null;
+                switch (choice1)  
                 {
                     case 1:
 
-                        Console.Write("Enter Address Book System Name:- "); //take input user side
+                        Console.Write("Enter Address Book System Name:- ");
 
-                        addressBookName = Console.ReadLine();  //Store name addressBookName
+                        addressBookName = Console.ReadLine();  
 
-                        bool isKeyAvailable = false; // true if a key press is available; otherwise, false.
+                        bool isKeyAvailable = false; 
 
-                        foreach (KeyValuePair<string, Program> keyValue in addressBookDictionary) //Iterating dictionary  displayed
-                        {
-                            if (keyValue.Key.Equals(addressBookName)) //Check Addressbook name exixt or not
+                        foreach (System.Collections.Generic.KeyValuePair<string, Program> keyValue in addressBookDictionary)
+                        { 
+                            if (keyValue.Key.Equals(addressBookName)) 
                             {
-                                isKeyAvailable = true; //value is present
+                                isKeyAvailable = true;
                             }
                         }
-                        if (isKeyAvailable) //value is present print message
+                        if (isKeyAvailable) 
                         {
                             Console.WriteLine($"Address Book System {addressBookName} is Already Exist\n Please Enter New Address Book Name:-");
                             addressBookName = Console.ReadLine();//Take input user
@@ -53,8 +54,8 @@ namespace AddressBook
                         }
                         bool loop2 = true;
                         Console.WriteLine("**** Welcome To Address Book System ****");
-                        
-                        EditContact edit = new EditContact(); //Create object Edit class
+                        int i = 0;
+                        // Edit edit = new Edit(); //Create object Edit class
                         while (loop2)
                         {
                             Console.WriteLine("\n1. Add New Person      ");
@@ -67,20 +68,20 @@ namespace AddressBook
                             switch (choice)
                             {
                                 case 1:
-                                    edit.AddRecord(); //call AddRecord Method
+                                    edit.AddRecord(); 
                                     break;
                                 case 2:
-                                    edit.DisplayRecord();  //call DisplayRecord Method
+                                    edit.DisplayRecord();  
                                     break;
                                 case 3:
                                     Console.Write("Enter First Name To Edit Records:- ");
                                     String firstName = Console.ReadLine();
-                                    edit.EditRecord(firstName); //call Edit record method
+                                    edit.EditRecord(firstName); 
                                     break;
                                 case 4:
                                     Console.Write("Enter First Name To Delete Records:- ");
                                     String Name = Console.ReadLine();
-                                    edit.DeleteRecord(Name); //call Delete record method
+                                    edit.DeleteRecord(Name);
                                     break;
                                 case 5:
                                     loop2 = false;
@@ -90,15 +91,18 @@ namespace AddressBook
                                     break;
                             }
                         }
-                        addressBookDictionary.Add(addressBookName, addressBook);//Addrees book add Name
+                        addressBookDictionary.Add(addressBookName, addressBook);
                         break;
                     case 2:
                         Console.WriteLine(" Available Address Books System ");
 
-                        foreach (KeyValuePair<String, Program> keyValue in addressBookDictionary) //Iterating
+                        foreach (KeyValuePair<String, Program> keyValue in addressBookDictionary) 
                         {
-                            Console.WriteLine("Address Book System Name:-  " + keyValue.Key); //print 
+                            Console.WriteLine("Address Book System Name:-  " + keyValue.Key);
                         }
+                        break;
+                    case 3:
+                        edit.SearchRecordCityOrState(); 
                         break;
 
                     default:
@@ -108,6 +112,7 @@ namespace AddressBook
 
             }
         }
+
     }
 }
 
