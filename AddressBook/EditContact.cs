@@ -234,7 +234,7 @@ namespace AddressBook
 
                 }
 
-
+                Console.WriteLine($"\nNumber of contact in the City:- {city} are {count}");
             }
             else
             {
